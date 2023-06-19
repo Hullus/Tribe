@@ -10,8 +10,9 @@ class Tribe(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     description = Column(String, index=True)
-    # special_habits = Column(set, )
-    items = relationship("Users", back_populates="owner")
+
+    users = relationship("User", back_populates="owner")
+
 
 
 class User(Base):
@@ -24,4 +25,5 @@ class User(Base):
 
     owner_id = Column(Integer, ForeignKey("tribe.id"))
 
-    owner = relationship("Tribe", back_populates="users")  # Note important attribute TODO: research this and add habits
+    owner = relationship("Tribe", back_populates="users")
+

@@ -1,3 +1,5 @@
+# import uuid
+
 from pydantic import BaseModel
 
 
@@ -20,6 +22,8 @@ class User(UserBase):
 
 class TribeBase(BaseModel):
     title: str
+    description: str
+    Members: list[User] = []
 
 
 class TribeCreate(TribeBase):
@@ -28,6 +32,6 @@ class TribeCreate(TribeBase):
 
 class Tribe(TribeBase):
     id: int
-    items: list[Users] = []
+
     class Config:
         orm_mode = True
