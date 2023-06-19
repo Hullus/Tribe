@@ -1,6 +1,6 @@
 # import uuid
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class UserBase(BaseModel):
@@ -9,6 +9,12 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
+
+
+class UserUpdate(BaseModel):
+    email: str = Field(None, title="Email")
+    hashed_password: str = Field(None, title="Hashed Password")
+    is_active: bool = Field(None, title="Is Active")
 
 
 class User(UserBase):
@@ -28,6 +34,11 @@ class TribeBase(BaseModel):
 
 class TribeCreate(TribeBase):
     pass
+
+
+class TribeUpdate(BaseModel):
+    title: str = Field(None, title="Title")
+    description: str = Field(None, title="Description")
 
 
 class Tribe(TribeBase):
